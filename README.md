@@ -2,8 +2,11 @@
 
 This is a mobile application created by Secret Design for Setshabelo Primary School in Welkom, Free State.
 
-We will be incorporating Flutter & Supabase.
+We will be using Flutter (Dart) for the frontend & Supabase as the database.
 
-The main functions will include a online registration system, registration status & a general update feature from the school to parents.
+Main Functions of The Application:
+Online Registration System.
+Registration Tracker.
+General Announcement/Updates Feature from the school to parents.
 
 
