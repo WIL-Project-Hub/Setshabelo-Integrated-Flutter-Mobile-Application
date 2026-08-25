@@ -1,16 +1,9 @@
 # setshabelo_integrated_flutter_mobile_application
 
-A new Flutter project.
+This is a mobile application created by Secret Design for Setshabelo Primary School in Welkom, Free State.
 
-## Getting Started
+We will be incorporating Flutter & Supabase.
 
-This project is a starting point for a Flutter application.
+The main functions will include a online registration system, registration status & a general update feature from the school to parents.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
