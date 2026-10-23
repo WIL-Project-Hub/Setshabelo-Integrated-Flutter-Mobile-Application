@@ -9,4 +9,17 @@ Main Functions of The Application:
 * Registration Tracker.
 * General Announcement/Updates Feature from the school to parents.
 
+Application User Manual
+* Create an account that is going to link with our database (Supabase):
+* Login using user ID credentials
+* Apply for child placement:
+  Provide parent name, child name
+  Provide parent ID, child birth number
+  Provide parent phone number, child phone number optional
+  Provide child previous report card
+  Provide compulsory documentation (application won't submit without document) 
+* Submit application
+* Check application status
+* Check for school updates
+* Check school achievements
 
