@@ -1,303 +1,229 @@
-class ApplicationModel {
+class Application {
   final String? applicationId;
   final String parentId;
-  final String parentSurname;
-  final String parentName;
-  final String parentIdNumber;
+  final String parentFirstName;
+  final String parentLastName;
+  final String? parentTitle;
+  final String? parentInitials;
+  final String? parentIdNumber;
   final String parentPhone;
   final String parentEmail;
-  final String parentAddress;
-  final String relationshipToChild;
-  final String childName;
-  final String childGender;
-  final String childRace;
-  final String childIDNumber;
-  final String childCitizenship;
-  final String countryOfBirth;
-  final String province;
-  final String childHomeLanguage;
-  final String preferredLanguage;
+  final String? parentAddress;
+  final String? parentRelationship;
+  final String? parentRace;
+  final String? parentHomeLanguage;
+  final String? parentOccupation;
+  final String? parentEmployer;
+
+  final String childFullName;
+  final String? childDateOfBirth;
+  final String? childGender;
+  final String? childRace;
+  final String? childIdNumber;
+  final String? childCitizenship;
+  final String? countryOfResidence;
+  final String? province;
+  final String? childHomeLanguage;
+  final String? preferredLanguage;
   final String gradeApplyingFor;
-  final String prePrimarySchool;
-  final String highestGradeCompleted;
-  final String yearCompleted;
-  final String accessionNumber;
-  final String previousSchool;
-  final String previousSchoolAddress;
-  final String physicalAddress;
-  final String city;
-  final String postalCode;
-  final String emergencyContactName;
-  final String emergencyContactNumber;
+  final String? prePrimaryEducation;
+  final String? highestGradePassed;
+  final String? yearGradePassed;
+  final String? accessionNo;
+  final String? previousSchool;
+  final String? previousSchoolAddress;
+
+  final String? physicalAddress;
+  final String? cityOrSuburb;
+  final String? postalCode;
+  final String? emergencyPhone;
   final String? childPhone;
   final String? childEmail;
   final String? modeOfTransport;
-  final String? transportDetails;
+
   final String? medicalAidNumber;
-  final String? medicalAidName;
-  final String? medicalAidMemberName;
+  final String? medicalAid;
+  final String? medicalAidMainMember;
   final String? doctorName;
   final String? doctorAddress;
-  final String? medicalConditions;
-  final String? specialNeeds;
-  final String childDexterity;
+  final String? doctorPhone;
+  final String? medicalCondition;
+  final String? specialProblems;
+  final String? childDexterity;
+
   final String applicationStatus;
+  final DateTime? submissionDate;
+  final String? reviewedBy;
+  final DateTime? reviewedDate;
 
-  final DateTime createdAt;
-
-  const ApplicationModel({
+  Application({
     this.applicationId,
     required this.parentId,
-    required this.parentSurname,
-    required this.parentName,
-    required this.parentIdNumber,
+    required this.parentFirstName,
+    required this.parentLastName,
+    this.parentTitle,
+    this.parentInitials,
+    this.parentIdNumber,
     required this.parentPhone,
     required this.parentEmail,
-    required this.parentAddress,
-    required this.relationshipToChild,
-    required this.childName,
-    required this.childGender,
-    required this.childRace,
-    required this.childIDNumber,
-    required this.childCitizenship,
-    required this.countryOfBirth,
-    required this.province,
-    required this.childHomeLanguage,
-    required this.preferredLanguage,
+    this.parentAddress,
+    this.parentRelationship,
+    this.parentRace,
+    this.parentHomeLanguage,
+    this.parentOccupation,
+    this.parentEmployer,
+    required this.childFullName,
+    this.childDateOfBirth,
+    this.childGender,
+    this.childRace,
+    this.childIdNumber,
+    this.childCitizenship,
+    this.countryOfResidence,
+    this.province,
+    this.childHomeLanguage,
+    this.preferredLanguage,
     required this.gradeApplyingFor,
-    required this.prePrimarySchool,
-    required this.highestGradeCompleted,
-    required this.yearCompleted,
-    required this.accessionNumber,
-    required this.previousSchool,
-    required this.previousSchoolAddress,
-    required this.physicalAddress,
-    required this.city,
-    required this.postalCode,
-    required this.emergencyContactName,
-    required this.emergencyContactNumber,
+    this.prePrimaryEducation,
+    this.highestGradePassed,
+    this.yearGradePassed,
+    this.accessionNo,
+    this.previousSchool,
+    this.previousSchoolAddress,
+    this.physicalAddress,
+    this.cityOrSuburb,
+    this.postalCode,
+    this.emergencyPhone,
     this.childPhone,
     this.childEmail,
     this.modeOfTransport,
-    this.transportDetails,
     this.medicalAidNumber,
-    this.medicalAidName,
-    this.medicalAidMemberName,
+    this.medicalAid,
+    this.medicalAidMainMember,
     this.doctorName,
     this.doctorAddress,
-    this.medicalConditions,
-    this.specialNeeds,
-    required this.childDexterity,
-    required this.applicationStatus,
-    required this.createdAt,
+    this.doctorPhone,
+    this.medicalCondition,
+    this.specialProblems,
+    this.childDexterity,
+    this.applicationStatus = 'Pending',
+    this.submissionDate,
+    this.reviewedBy,
+    this.reviewedDate,
   });
 
-  factory ApplicationModel.fromJson(Map<String, dynamic> json) {
-    return ApplicationModel(
-      applicationId: json['applicationId'],
-      parentId: json['parentId'],
-      parentSurname: json['parentSurname'],
-      parentName: json['parentName'],
-      parentIdNumber: json['parentIdNumber'],
-      parentPhone: json['parentPhone'],
-      parentEmail: json['parentEmail'],
-      parentAddress: json['parentAddress'],
-      relationshipToChild: json['relationshipToChild'],
-      childName: json['childName'],
-      childGender: json['childGender'],
-      childRace: json['childRace'],
-      childIDNumber: json['childIDNumber'],
-      childCitizenship: json['childCitizenship'],
-      countryOfBirth: json['countryOfBirth'],
+  factory Application.fromJson(Map<String, dynamic> json) {
+    return Application(
+      applicationId: json['application_id'],
+      parentId: json['parent_id'],
+      parentFirstName: json['parent_first_name'] ?? '',
+      parentLastName: json['parent_last_name'] ?? '',
+      parentTitle: json['parent_title'],
+      parentInitials: json['parent_initials'],
+      parentIdNumber: json['parent_id_number'],
+      parentPhone: json['parent_phone'] ?? '',
+      parentEmail: json['parent_email'] ?? '',
+      parentAddress: json['parent_address'],
+      parentRelationship: json['parent_relationship'],
+      parentRace: json['parent_race'],
+      parentHomeLanguage: json['parent_home_language'],
+      parentOccupation: json['parent_occupation'],
+      parentEmployer: json['parent_employer'],
+      childFullName: json['child_full_name'] ?? '',
+      childDateOfBirth: json['child_date_of_birth'],
+      childGender: json['child_gender'],
+      childRace: json['child_race'],
+      childIdNumber: json['child_id_number'],
+      childCitizenship: json['child_citizenship'],
+      countryOfResidence: json['country_of_residence'],
       province: json['province'],
-      childHomeLanguage: json['childHomeLanguage'],
-      preferredLanguage: json['preferredLanguage'],
-      gradeApplyingFor: json['gradeApplyingFor'],
-      prePrimarySchool: json['prePrimarySchool'],
-      highestGradeCompleted: json['highestGradeCompleted'],
-      yearCompleted: json['yearCompleted'],
-      accessionNumber: json['accessionNumber'],
-      previousSchool: json['previousSchool'],
-      previousSchoolAddress: json['previousSchoolAddress'],
-      physicalAddress: json['physicalAddress'],
-      city: json['city'],
-      postalCode: json['postalCode'],
-      emergencyContactName: json['emergencyContactName'],
-      emergencyContactNumber: json['emergencyContactNumber'],
-      childPhone: json['childPhone'],
-      childEmail: json['childEmail'],
-      modeOfTransport: json['modeOfTransport'],
-      transportDetails: json['transportDetails'],
-      medicalAidNumber: json['medicalAidNumber'],
-      medicalAidName: json['medicalAidName'],
-      medicalAidMemberName: json['medicalAidMemberName'],
-      doctorName: json['doctorName'],
-      doctorAddress: json['doctorAddress'],
-      medicalConditions: json['medicalConditions'] ?? '',
-      specialNeeds: json['specialNeeds'] ?? '',
-      childDexterity: json['childDexterity'] ?? '',
-      applicationStatus:
-          (json.containsKey('applicationStatus') &&
-              (json["applicationStatus"] != null))
-          ? (json["applicationStatus"] as String)
-          : 'pending',
-      createdAt: DateTime.parse(json['createdAt']),
+      childHomeLanguage: json['child_home_language'],
+      preferredLanguage: json['preferred_language'],
+      gradeApplyingFor: json['grade_applying_for'] ?? '',
+      prePrimaryEducation: json['pre_primary_education'],
+      highestGradePassed: json['highest_grade_passed'],
+      yearGradePassed: json['year_grade_passed'],
+      accessionNo: json['accession_no'],
+      previousSchool: json['previous_school'],
+      previousSchoolAddress: json['previous_school_address'],
+      physicalAddress: json['physical_address'],
+      cityOrSuburb: json['city_or_suburb'],
+      postalCode: json['postal_code'],
+      emergencyPhone: json['emergency_phone'],
+      childPhone: json['child_phone'],
+      childEmail: json['child_email'],
+      modeOfTransport: json['mode_of_transport'],
+      medicalAidNumber: json['medical_aid_number'],
+      medicalAid: json['medical_aid'],
+      medicalAidMainMember: json['medical_aid_main_member'],
+      doctorName: json['doctor_name'],
+      doctorAddress: json['doctor_address'],
+      doctorPhone: json['doctor_phone'],
+      medicalCondition: json['medical_condition'],
+      specialProblems: json['special_problems'],
+      childDexterity: json['child_dexterity'],
+      applicationStatus: json['application_status'] ?? 'Pending',
+      submissionDate: json['submission_date'] != null
+          ? DateTime.parse(json['submission_date'])
+          : null,
+      reviewedBy: json['reviewed_by'],
+      reviewedDate: json['reviewed_date'] != null
+          ? DateTime.parse(json['reviewed_date'])
+          : null,
     );
   }
 
+  // For sending to Supabase
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {
-      'applicationId': applicationId,
-      'parentId': parentId,
-      'parentSurname': parentSurname,
-      'parentName': parentName,
-      'parentIdNumber': parentIdNumber,
-      'parentPhone': parentPhone,
-      'parentEmail': parentEmail,
-      'parentAddress': parentAddress,
-      'relationshipToChild': relationshipToChild,
-      'childName': childName,
-      'childGender': childGender,
-      'childRace': childRace,
-      'childIDNumber': childIDNumber,
-      'childCitizenship': childCitizenship,
-      'countryOfBirth': countryOfBirth,
+    return {
+      if (applicationId != null) 'application_id': applicationId,
+      'parent_id': parentId,
+      'parent_first_name': parentFirstName,
+      'parent_last_name': parentLastName,
+      'parent_title': parentTitle,
+      'parent_initials': parentInitials,
+      'parent_id_number': parentIdNumber,
+      'parent_phone': parentPhone,
+      'parent_email': parentEmail,
+      'parent_address': parentAddress,
+      'parent_relationship': parentRelationship,
+      'parent_race': parentRace,
+      'parent_home_language': parentHomeLanguage,
+      'parent_occupation': parentOccupation,
+      'parent_employer': parentEmployer,
+      'child_full_name': childFullName,
+      'child_date_of_birth': childDateOfBirth,
+      'child_gender': childGender,
+      'child_race': childRace,
+      'child_id_number': childIdNumber,
+      'child_citizenship': childCitizenship,
+      'country_of_residence': countryOfResidence,
       'province': province,
-      'childHomeLanguage': childHomeLanguage,
-      'preferredLanguage': preferredLanguage,
-      'gradeApplyingFor': gradeApplyingFor,
-      'prePrimarySchool': prePrimarySchool,
-      'highestGradeCompleted': highestGradeCompleted,
-      'yearCompleted': yearCompleted,
-      'accessionNumber': accessionNumber,
-      'previousSchool': previousSchool,
-      'previousSchoolAddress': previousSchoolAddress,
-      'physicalAddress': physicalAddress,
-      'city': city,
-      'postalCode': postalCode,
-      'emergencyContactName': emergencyContactName,
-      'emergencyContactNumber': emergencyContactNumber,
-      'childPhone': childPhone,
-      'childEmail': childEmail,
-      'modeOfTransport': modeOfTransport,
-      'transportDetails': transportDetails,
-      'medicalAidNumber': medicalAidNumber,
-      'medicalAidName': medicalAidName,
-      'medicalAidMemberName': medicalAidMemberName,
-      'doctorName': doctorName,
-      'doctorAddress': doctorAddress,
-      'medicalConditions': medicalConditions,
-      'specialNeeds': specialNeeds,
-      'childDexterity': childDexterity,
-      'applicationStatus': applicationStatus,
+      'child_home_language': childHomeLanguage,
+      'preferred_language': preferredLanguage,
+      'grade_applying_for': gradeApplyingFor,
+      'pre_primary_education': prePrimaryEducation,
+      'highest_grade_passed': highestGradePassed,
+      'year_grade_passed': yearGradePassed,
+      'accession_no': accessionNo,
+      'previous_school': previousSchool,
+      'previous_school_address': previousSchoolAddress,
+      'physical_address': physicalAddress,
+      'city_or_suburb': cityOrSuburb,
+      'postal_code': postalCode,
+      'emergency_phone': emergencyPhone,
+      'child_phone': childPhone,
+      'child_email': childEmail,
+      'mode_of_transport': modeOfTransport,
+      'medical_aid_number': medicalAidNumber,
+      'medical_aid': medicalAid,
+      'medical_aid_main_member': medicalAidMainMember,
+      'doctor_name': doctorName,
+      'doctor_address': doctorAddress,
+      'doctor_phone': doctorPhone,
+      'medical_condition': medicalCondition,
+      'special_problems': specialProblems,
+      'child_dexterity': childDexterity,
+      'application_status': applicationStatus,
     };
-    if (medicalAidNumber != null) data['medicalAidNumber'] = medicalAidNumber;
-    if (medicalAidName != null) data['medicalAidName'] = medicalAidName;
-    if (medicalAidMemberName != null)
-      data['medicalAidMemberName'] = medicalAidMemberName;
-    if (doctorName != null) data['doctorName'] = doctorName;
-    if (doctorAddress != null) data['doctorAddress'] = doctorAddress;
-    if (medicalConditions != null)
-      data['medicalConditions'] = medicalConditions;
-    if (specialNeeds != null) data['specialNeeds'] = specialNeeds;
-    if (transportDetails != null) data['transportDetails'] = transportDetails;
-    if (modeOfTransport != null) data['modeOfTransport'] = modeOfTransport;
-
-    return data;
-  }
-
-  ApplicationModel copyWith({
-    String? applicationId,
-    String? parentId,
-    String? parentSurname,
-    String? parentName,
-    String? parentIdNumber,
-    String? parentPhone,
-    String? parentEmail,
-    String? parentAddress,
-    String? relationshipToChild,
-    String? childName,
-    String? childGender,
-    String? childRace,
-    String? childIDNumber,
-    String? childCitizenship,
-    String? countryOfBirth,
-    String? province,
-    String? childHomeLanguage,
-    String? preferredLanguage,
-    String? gradeApplyingFor,
-    String? prePrimarySchool,
-    String? highestGradeCompleted,
-    String? yearCompleted,
-    String? accessionNumber,
-    String? previousSchool,
-    String? previousSchoolAddress,
-    String? physicalAddress,
-    String? city,
-    String? postalCode,
-    String? emergencyContactName,
-    String? emergencyContactNumber,
-    String? childPhone,
-    String? childEmail,
-    String? modeOfTransport,
-    String? transportDetails,
-    String? medicalAidNumber,
-    String? medicalAidName,
-    String? medicalAidMemberName,
-    String? doctorName,
-    String? doctorAddress,
-    String? medicalConditions,
-    String? specialNeeds,
-    String? applicationStatus,
-  }) {
-    return ApplicationModel(
-      applicationId: applicationId ?? this.applicationId,
-      parentId: parentId ?? this.parentId,
-      parentSurname: parentSurname ?? this.parentSurname,
-      parentName: parentName ?? this.parentName,
-      parentIdNumber: parentIdNumber ?? this.parentIdNumber,
-      parentPhone: parentPhone ?? this.parentPhone,
-      parentEmail: parentEmail ?? this.parentEmail,
-      parentAddress: parentAddress ?? this.parentAddress,
-      relationshipToChild: relationshipToChild ?? this.relationshipToChild,
-      childName: childName ?? this.childName,
-      childGender: childGender ?? this.childGender,
-      childRace: childRace ?? this.childRace,
-      childIDNumber: childIDNumber ?? this.childIDNumber,
-      childCitizenship: childCitizenship ?? this.childCitizenship,
-      countryOfBirth: countryOfBirth ?? this.countryOfBirth,
-      province: province ?? this.province,
-      childHomeLanguage: childHomeLanguage ?? this.childHomeLanguage,
-      preferredLanguage: preferredLanguage ?? this.preferredLanguage,
-      gradeApplyingFor: gradeApplyingFor ?? this.gradeApplyingFor,
-      prePrimarySchool: prePrimarySchool ?? this.prePrimarySchool,
-      highestGradeCompleted:
-          highestGradeCompleted ?? this.highestGradeCompleted,
-      yearCompleted: yearCompleted ?? this.yearCompleted,
-      accessionNumber: accessionNumber ?? this.accessionNumber,
-      previousSchool: previousSchool ?? this.previousSchool,
-      previousSchoolAddress:
-          previousSchoolAddress ?? this.previousSchoolAddress,
-      physicalAddress: physicalAddress ?? this.physicalAddress,
-      city: city ?? this.city,
-      postalCode: postalCode ?? this.postalCode,
-      emergencyContactName: emergencyContactName ?? this.emergencyContactName,
-      emergencyContactNumber:
-          emergencyContactNumber ?? this.emergencyContactNumber,
-      childPhone: childPhone ?? this.childPhone,
-      childEmail: childEmail ?? this.childEmail,
-      modeOfTransport: modeOfTransport ?? this.modeOfTransport,
-      transportDetails: transportDetails ?? this.transportDetails,
-      medicalAidNumber: medicalAidNumber ?? this.medicalAidNumber,
-      medicalAidName: medicalAidName ?? this.medicalAidName,
-      medicalAidMemberName: medicalAidMemberName ?? this.medicalAidMemberName,
-      doctorName: doctorName ?? this.doctorName,
-      doctorAddress: doctorAddress ?? this.doctorAddress,
-      medicalConditions: medicalConditions ?? this.medicalConditions,
-      specialNeeds: specialNeeds ?? this.specialNeeds,
-      childDexterity: childDexterity,
-      applicationStatus: applicationStatus ?? this.applicationStatus,
-      createdAt: createdAt,
-    );
   }
 }
